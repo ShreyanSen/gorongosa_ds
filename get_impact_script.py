@@ -1,12 +1,20 @@
 #!/usr/bin/env python
 # coding: utf-8
 
-# In[1]:
-
-
 import pandas as pd 
+import argparse
 
-def main_script(history_csv_name='gorongosa_purchase_history.csv', titles_csv_name='Gorongosa_Titles_V2.csv', output_name='total_impact_csv'):
+
+def get_args():
+    parser = argparse.ArgumentParser(description='Arguments for impact calculation')
+    parser.add_argument('history-csv-name', type=str, help='csv of purchase history', default='gorongosa_purchase_history.csv')
+    parser.add_argument('titles-csv-name', type=str, help='csv with map from titles to impact',default='Gorongosa_Titles_V2.csv')
+    parser.add_argument('output-name', type=str, help='output filename', default='total_impact.csv')
+    args = parser.parse_args()
+    return args.history_csv_name, args.titles_csv_name, args.output_name
+
+
+def main_script(history_csv_name, titles_csv_name, output_name):
     history, titles = read_data(history_csv_name, titles_csv_name)
     history_2 = clean_and_merge_data(history, titles)
     impact = get_impact(history_2)
@@ -34,9 +42,8 @@ def get_impact(history_2):
     impact = history_3.groupby(['Customer email','Customer first name','Customer last name']).agg({'Girls ':'sum','Wildlife':'sum','Trees':'sum'}).reset_index()
     return impact
 
-
-# In[ ]:
-
-
+if __name__=='__main__':
+    history_csv_name, titles_csv_name, output_name = get_args()
+    main_script(history_csv_name, titles_csv_name, output_name)
 
 
