@@ -7,9 +7,9 @@ import argparse
 
 def get_args():
     parser = argparse.ArgumentParser(description='Arguments for impact calculation')
-    parser.add_argument('history-csv-name', type=str, help='csv of purchase history', default='gorongosa_purchase_history.csv')
-    parser.add_argument('titles-csv-name', type=str, help='csv with map from titles to impact',default='Gorongosa_Titles_V2.csv')
-    parser.add_argument('output-name', type=str, help='output filename', default='total_impact.csv')
+    parser.add_argument('-hist','--history-csv-name', type=str, help='csv of purchase history', default='gorongosa_purchase_history.csv')
+    parser.add_argument('-t','--titles-csv-name', type=str, help='csv with map from titles to impact',default='Gorongosa_Titles_V2.csv')
+    parser.add_argument('-o','--output-name', type=str, help='output filename', default='total_impact.csv')
     args = parser.parse_args()
     return args.history_csv_name, args.titles_csv_name, args.output_name
 
