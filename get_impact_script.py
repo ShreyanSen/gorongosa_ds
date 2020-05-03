@@ -1,6 +1,13 @@
 #!/usr/bin/env python
 # coding: utf-8
+"""
+Run this script in the same bin as a purchase history csv (by default titled 'gorongosa_purchase_history.csv') and a csv 
+('Gorongosa_Titles_V2.csv') that maps product titles to impact scores for these categories: Girls, Wildlife, Trees. 
+The output aggregates impact scores per customer over the course of the indicated purchase history. 
+Mr. E. Wilburn has the sample purchase history and title csv used to generate the first impact scores. 
+Ultimately it will be convenient to toss this script into a pipeline instead of running it manually. 
 
+"""
 import pandas as pd 
 import argparse
 
